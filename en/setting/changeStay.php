@@ -1,6 +1,6 @@
 <?php
-    include "../init.php";
-    include '../dataBase.php';
+    include "../../init.php";
+    include '../../dataBase.php';
     global $id, $usPseudo, $conn;
 
     if (isset($_POST['changeStay'])) {
