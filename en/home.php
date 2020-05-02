@@ -50,7 +50,7 @@
 
             <li class="nav-item container  my-1">
                 <button class="btn" href="https://quicklearn.yj.fr/en/class/classHome.php" type="button" style="background-color:#C2F732 ;">
-                    <i class="material-icons">school</i> Class
+                    <i class="material-icons">school</i>Class
                 </button>
             </li>
 
