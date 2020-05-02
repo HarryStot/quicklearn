@@ -1,0 +1,30 @@
+.login{
+    height: 1000px;
+    background: #6699cc url(https://i.ibb.co/3zxQgCV/milky-way-984050-960-720.jpg);
+    background-size: cover;
+    position: relative;
+}
+
+.login-form {
+  max-width: 600px;
+  width: 90%;
+  background-color: #6699cc;
+  padding: 40px;
+  border-radius: 4px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: #fff;
+  box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+}
+
+.logo{
+  max-width: 600px;
+  width: 90%;
+  padding: 70px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 15%;
+  left: 33%;
+}

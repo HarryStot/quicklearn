@@ -1,0 +1,141 @@
+.group {
+  transform: translate(-50%, -50%);
+  position: relative;
+  top: 36%;
+  left: 62%;
+}
+
+.list {
+  width: 500px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  margin: auto;
+  top: 25%;
+  left: 50%;
+  background-color: rgb(68,135,184);
+}
+
+input {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 300px;
+  border: none;
+  border-bottom: 1px solid #d7c6c6;
+  background: none;
+  color: white;
+  /*position: relative;*/
+  transform: translateY(65px);
+}
+
+input:focus {
+  outline: none;
+}
+
+label {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  transform: translateY(65px);
+}
+
+input:focus ~ label, input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 300px;
+  transform: translateY(65px);
+}
+
+.bar:before, .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #ffffff;
+  transition: 0.2s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width: 50%;
+}
+
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+input:focus ~ .highlight {
+  animation: inputHighlighter 0.3s ease;
+}
+
+.btnList {
+  margin-left: 65%;
+  position: relative;
+  top: 28px;
+}
+
+.voc {
+  width: 900px;
+  height: 100px;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  margin: auto;
+  top: 62%;
+  left: 50%;
+  background-color: rgb(68,135,184);
+}
+
+.group2 {
+  margin-top: -53px;
+  transform: translate(-50%, -50%);
+  position: relative;
+  top: 38%;
+  left: 56%;
+}
+
+.group3 {
+  margin-top: -30px;
+  transform: translate(-50%, -50%);
+  position: relative;
+  top: 38%;
+  left: 97%;
+}
+
+.bar2 {
+  position: relative;
+  display: block;
+  width: 300px;
+  transform: translateY(65px);
+}
+
+.btnVoc {
+  margin-left: 38%;
+  position: relative;
+  top: 28px;
+}
