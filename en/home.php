@@ -64,7 +64,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:#C2F732;">
             <a class="dropdown-item" href="https://quicklearn.yj.fr/en/setting/account.php">Me !</a>
             <a class="dropdown-item" href="https://quicklearn.yj.fr/en/setting/settingHome.php">Setting</a>
-            <a class="dropdown-item" href="https://quicklearn.yj.fr/en/logOut.php">Log out</a>
+            <a class="dropdown-item" href="https://quicklearn.yj.fr/en/setting/logOut.php">Log out</a>
         </div>
     </div>
 </nav>
