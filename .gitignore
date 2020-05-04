@@ -1,8 +1,5 @@
 /database.php
 /init.php
-/.idea/workspace.xml
-/.idea/deployment.xml
-/.idea/misc.xm
-.idea/modules.xml
-.idea/quicklearn.iml
-.idea/vcs.xml
+.idea/	
+*.xml
+*.iml
