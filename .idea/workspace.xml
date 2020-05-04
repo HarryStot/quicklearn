@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="51aad053-f2af-4e96-9364-2f358044c971" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/crypt.php" beforeDir="false" afterPath="$PROJECT_DIR$/crypt.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/en/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/en/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +58,7 @@
       <option name="presentableId" value="Default" />
       <updated>1588598408303</updated>
       <workItem from="1588598418940" duration="4617000" />
+      <workItem from="1588611979606" duration="1588000" />
     </task>
     <servers />
   </component>
@@ -78,7 +80,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -98,6 +102,14 @@
     </state>
     <state x="565" y="329" key="NewPhpFileDialog/0.0.1366.768/1366.-311.1920.1080@0.0.1366.768" timestamp="1588602822414" />
     <state x="2160" y="152" key="NewPhpFileDialog/0.0.1366.768/1366.-311.1920.1080@1366.-311.1920.1080" timestamp="1588600392637" />
+    <state x="1827" y="-129" key="SettingsEditor" timestamp="1588613331813">
+      <screen x="1366" y="-311" width="1920" height="1080" />
+    </state>
+    <state x="1827" y="-129" key="SettingsEditor/0.0.1366.768/1366.-311.1920.1080@1366.-311.1920.1080" timestamp="1588613331813" />
+    <state x="2173" y="143" key="VCS.ChangelistChooser" timestamp="1588612060268">
+      <screen x="1366" y="-311" width="1920" height="1080" />
+    </state>
+    <state x="2173" y="143" key="VCS.ChangelistChooser/0.0.1366.768/1366.-311.1920.1080@1366.-311.1920.1080" timestamp="1588612060268" />
     <state x="339" y="172" width="672" height="677" key="run.anything.popup" timestamp="1588602784998">
       <screen x="0" y="0" width="1366" height="768" />
     </state>

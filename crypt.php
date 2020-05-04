@@ -6,3 +6,5 @@ function cryptqqc($arg) {
 function decryptqqc($arg) {
     return base64_decode($arg);
 }
+
+?>
