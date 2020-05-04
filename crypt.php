@@ -1,8 +1,8 @@
 <?php
-function crypt($arg) {
+function cryptqqc($arg) {
     return base64_encode($arg);
 }
 
-function decrypt($arg) {
+function decryptqqc($arg) {
     return base64_decode($arg);
 }
