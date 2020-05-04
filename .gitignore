@@ -1,2 +1,4 @@
-database.php
-init.php
+# Ignore files
+/database.php
+/init.php
+/.idea/workspace.xml
