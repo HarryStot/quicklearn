@@ -3,7 +3,13 @@
     if (isset($_COOKIE['conn'])) {
         if ($_COOKIE['conn'] == "on") {
             // ok
-            // TODO: problem cookies can be change. Need put value of cookie = value of session
+            if (isset($_COOKIE['stayCon'])) {
+                if ($_COOKIE['stayCon'] == "on") {
+                    $_COOKIE['id'] = $_SESSION['id'] ;
+                    $_COOKIE['pseudo'] = $_SESSION['pseudo'];
+                }
+            }
+
         } else {
             header('Location: https://quicklearn.yj.fr');
             exit();
