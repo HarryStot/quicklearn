@@ -1,10 +1,11 @@
 <?php
+    include "crypt.php";
     session_start();
     if (isset($_COOKIE['conn'])) {
-        if ($_COOKIE['conn'] == "on") {
+        if ($_COOKIE['conn'] == cryptqqc("on")) {
             // ok
             if (isset($_COOKIE['stayCon'])) {
-                if ($_COOKIE['stayCon'] == "on") {
+                if ($_COOKIE['stayCon'] == cryptqqc("on")) {
                     $_COOKIE['id'] = $_SESSION['id'] ;
                     $_COOKIE['pseudo'] = $_SESSION['pseudo'];
                 }
@@ -19,6 +20,6 @@
         exit();
     }
 
-    $usPseudo = $_SESSION['pseudo'];
-    $id = $_SESSION['id'];
+    $usPseudo = decryptqqc($_SESSION['pseudo']);
+    $id = decryptqqc($_SESSION['id']);
 ?>
