@@ -106,9 +106,9 @@ function conn()
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="../style/style.css" rel="stylesheet" type="text/css">
+    
     <meta name="google-signin-scope" content="profile email">
-
     <meta name="google-signin-client_id" content="174966792230-1obqclknshoiovi16vm21pjh7aspst64.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
