@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "../database.php";
 include '../crypt.php';
 global $conn, $onC, $offC, $emptyC;
 $onC = cryptqqc("on");
