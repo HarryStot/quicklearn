@@ -1,25 +1,24 @@
 <?php
-    include "crypt.php";
     session_start();
     if (isset($_COOKIE['conn'])) {
-        if ($_COOKIE['conn'] == cryptqqc("on")) {
+        if ($_COOKIE['conn'] == "on") {
             // ok
             if (isset($_COOKIE['stayCon'])) {
-                if ($_COOKIE['stayCon'] == cryptqqc("on")) {
-                    $_COOKIE['id'] = $_SESSION['id'] ;
-                    $_COOKIE['pseudo'] = $_SESSION['pseudo'];
+                if ($_COOKIE['stayCon'] == "on") {
+//                    $_COOKIE['id'] = $_SESSION['id'] ;
+//                    $_COOKIE['pseudo'] = $_SESSION['pseudo'];
                 }
             }
 
         } else {
-            header('Location: https://quicklearn.yj.fr');
+            header('Location: https://quicklearn.yj.fr/en/');
             exit();
         }
     } else {
-        header('Location: https://quicklearn.yj.fr');
+        header('Location: https://quicklearn.yj.fr/en/');
         exit();
     }
 
-    $usPseudo = decryptqqc($_SESSION['pseudo']);
-    $id = decryptqqc($_SESSION['id']);
+    $usPseudo = $_SESSION['pseudo'];
+    $id = $_SESSION['id'];
 ?>

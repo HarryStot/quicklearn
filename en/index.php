@@ -1,36 +1,31 @@
 <?php
 session_start();
 include "../database.php";
-include '../crypt.php';
-global $conn, $onC, $offC, $emptyC;
-$onC = cryptqqc("on");
-$offC = cryptqqc("off");
-$emptyC = cryptqqc("");
-
+global $conn;
 
 if (isset($_COOKIE['stayCon'])) {
 
-    if ($_COOKIE['stayCon'] == $onC) {
+    if ($_COOKIE['stayCon'] == "on") {
         // nothing
     } else {
-        setrawcookie('stayCon', $onC, time() + 60 * 60 * 24);
-        setrawcookie('pseudo', $emptyC, time() + 60 * 60 * 24);
-        setrawcookie('id', $emptyC, time() + 60 * 60 * 24);
-        setrawcookie('conn', $emptyC, time() + 60 * 60 * 24);
+        setrawcookie('stayCon', "", time() + 60 * 60 * 24, "/");
+        setrawcookie('pseudo', "", time() + 60 * 60 * 24, "/");
+        setrawcookie('id', "", time() + 60 * 60 * 24, "/");
+        setrawcookie('conn', "", time() + 60 * 60 * 24, "/");
     }
 
 } else {
-    setrawcookie('stayCon', $offC, time() + 60 * 60 * 24);
-    setrawcookie('pseudo', $emptyC, time() + 60 * 60 * 24);
-    setrawcookie('id', $emptyC, time() + 60 * 60 * 24);
-    setrawcookie('conn', $emptyC, time() + 60 * 60 * 24);
+    setrawcookie('stayCon', "on", time() + 60 * 60 * 24, "/");
+    setrawcookie('pseudo', "", time() + 60 * 60 * 24, "/");
+    setrawcookie('id', "", time() + 60 * 60 * 24, "/");
+    setrawcookie('conn', "", time() + 60 * 60 * 24, "/");
 }
 
 if (isset($_COOKIE['stayCon'])) {
 
-    if ($_COOKIE['stayCon'] == $onC) {
+    if ($_COOKIE['stayCon'] == "on") {
 
-        if ($_COOKIE['conn'] == $onC) {
+        if ($_COOKIE['conn'] == "on") {
             $_SESSION['id'] = $_COOKIE['id'];
             $_SESSION['pseudo'] = $_COOKIE['pseudo'];
             header('Location: https://quicklearn.yj.fr/en/home.php');
@@ -50,7 +45,6 @@ if (isset($_COOKIE['stayCon'])) {
 
 function conn()
 {
-    $onCc = $GLOBALS['onC'];
     $conn = $GLOBALS['conn'];
     if (isset($_POST["login"])) {
 
@@ -59,9 +53,6 @@ function conn()
 
         if (isset($_POST['stay'])) {
             $stayCon = $_POST['stay'];
-            if ($stayCon == "on") {
-                $stayCon = $onCc;
-            }
             setrawcookie('stayCon', $stayCon, time() + 60 * 60 * 24, null, null, false, true);
         }
 
@@ -72,12 +63,12 @@ function conn()
             $row = $result->fetch_array();
             if (password_verify($password, $row['password'])) {
                 //echo "GOOD";
-                include "../crypt.php"; // récup function "cryptage"
-                $_SESSION['id'] = cryptqqc($row['id']);
-                $_SESSION['pseudo'] = cryptqqc($row['pseudo']);
-                setrawcookie('conn', $onCc, time() + 60 * 60 * 24);
-                setcookie('id', cryptqqc($row['id']), time() + 60 * 60 * 24);
-                setcookie('pseudo', cryptqqc($row['pseudo']), time() + 60 * 60 * 24);
+
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['pseudo'] = $row['pseudo'];
+                setrawcookie('conn', "on", time() + 60 * 60 * 24, "/");
+                setcookie('id', $row['id'], time() + 60 * 60 * 24, "/");
+                setcookie('pseudo', $row['pseudo'], time() + 60 * 60 * 24, "/");
                 header('Location: https://quicklearn.yj.fr/en/home.php');
                 exit();
             } else {
