@@ -175,14 +175,13 @@ function conn()
 
 
                 <!-- bouton s'inscrire -->
-                <a class="btn btn-dark" href="https://quicklearn.yj.fr/signIn.php" role="button">Sign In</a>
+                <a class="btn btn-dark" href="https://quicklearn.yj.fr/en/signIn.php" role="button">Sign In</a>
 
 
                 <h1></h1>
 
                 <!-- Lien si mdp oublié -->
-                <a class="btn btn-danger" href="https://quicklearn.yj.fr/forgetPassword.php" role="button">Forget
-                    password ?</a>
+                <a class="btn btn-danger" href="https://quicklearn.yj.fr/en/sendMailForget.php" role="button">Forgets password ?</a>
 
                 <!--<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>-->
 

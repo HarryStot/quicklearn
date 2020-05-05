@@ -39,15 +39,15 @@
             }
 
             if (testPseudo() && testEmail()) {
-
+                include "../crypt.php";
                 //echo "All good";
                 $options = ['cost' => 12];
                 $hash = password_hash($password, PASSWORD_BCRYPT, $options);
-                $_SESSION['pseudo'] = $pseudo;
-                $_SESSION['email'] = $email;
-                $_SESSION['password'] = $hash;
+                $_SESSION['pseudo'] = cryptqqc($pseudo);
+                $_SESSION['email'] = cryptqqc($email);
+                $_SESSION['password'] = cryptqqc($hash);
                 $code = bin2hex(random_bytes(3));
-                $_SESSION['code'] = $code;
+                $_SESSION['code'] = cryptqqc($code);
                 $to_email = $email;
                 $subject = '(IMPORTANT) Confirm your email';
                 $message = 'Confirm your email with the code : ' . $code;
