@@ -32,7 +32,7 @@ if (isset($_COOKIE['stayCon'])) {
         if ($_COOKIE['conn'] == $onC) {
             $_SESSION['id'] = $_COOKIE['id'];
             $_SESSION['pseudo'] = $_COOKIE['pseudo'];
-            header('Location: https://quicklearn.yj.fr/home.php');
+            header('Location: https://quicklearn.yj.fr/en/home.php');
             exit();
         }
 
@@ -75,7 +75,7 @@ function conn()
                 setrawcookie('conn', $onCc, time() + 60 * 60 * 24);
                 setcookie('id', cryptqqc($row['id']), time() + 60 * 60 * 24);
                 setcookie('pseudo', cryptqqc($row['pseudo']), time() + 60 * 60 * 24);
-                header('Location: https://quicklearn.yj.fr/home.php');
+                header('Location: https://quicklearn.yj.fr/en/home.php');
                 exit();
             } else {
                 setrawcookie('stayCon');
