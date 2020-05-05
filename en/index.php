@@ -34,6 +34,8 @@ if (isset($_COOKIE['stayCon'])) {
             $_SESSION['pseudo'] = $_COOKIE['pseudo'];
             header('Location: https://quicklearn.yj.fr/en/home.php');
             exit();
+        } else {
+            conn();
         }
 
     } else {
