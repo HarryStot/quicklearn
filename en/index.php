@@ -28,7 +28,7 @@
             if ($_COOKIE['conn'] == "on") {
                 $_SESSION['id'] = $_COOKIE['id'];
                 $_SESSION['pseudo'] = $_COOKIE['pseudo'];
-                header('Location: https://quicklearn.yj.fr/home.php');
+                header('/home.php');
                 exit();
             }
 
@@ -66,7 +66,7 @@
                     setrawcookie('conn', 'on', time()+60*60*24);
                     setcookie('id', $row['id'], time()+60*60*24);
                     setcookie('pseudo', $row['pseudo'], time()+60*60*24);
-                    header('Location: https://quicklearn.yj.fr/home.php');
+                    header('/home.php');
                     exit();
                 } else {
                     setrawcookie('stayCon');
@@ -185,14 +185,14 @@
 
 
                     <!-- bouton s'inscrire -->
-                    <a class="btn btn-dark" href="https://quicklearn.yj.fr/signIn.php" role="button">Sign In</a>
+                    <a class="btn btn-dark" href="/signIn.php" role="button">Sign In</a>
 
 
 
                     <h1></h1>
 
                     <!-- Lien si mdp oublié -->
-                    <a class="btn btn-danger" href="https://quicklearn.yj.fr/forgetPassword.php" role="button">Forget password ?</a>
+                    <a class="btn btn-danger" href="/forgetPassword.php" role="button">Forget password ?</a>
 
                     <!--<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>-->
 
