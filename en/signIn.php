@@ -53,7 +53,7 @@
                 $message = 'Confirm your email with the code : ' . $code;
                 $headers = 'From: noreply @ QuickLearn . com';
                 mail($to_email,$subject,$message,$headers);
-                header('Location: https://quicklearn.yj.fr/confirmEmail.php');
+                header('Location: https://quicklearn.yj.fr/en/confirmEmail.php');
                 exit();
             }
 

@@ -11,14 +11,15 @@
             }
 
         } else {
-            header('Location: https://quicklearn.yj.fr/en/');
+            header('Location: https://quicklearn.yj.fr');
             exit();
         }
     } else {
-        header('Location: https://quicklearn.yj.fr/en/');
+        header('Location: https://quicklearn.yj.fr');
         exit();
     }
 
     $usPseudo = $_SESSION['pseudo'];
     $id = $_SESSION['id'];
+
 ?>

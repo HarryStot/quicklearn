@@ -8,17 +8,17 @@ if (isset($_COOKIE['stayCon'])) {
     if ($_COOKIE['stayCon'] == "on") {
         // nothing
     } else {
-        setrawcookie('stayCon', "", time() + 60 * 60 * 24, "/");
-        setrawcookie('pseudo', "", time() + 60 * 60 * 24, "/");
-        setrawcookie('id', "", time() + 60 * 60 * 24, "/");
-        setrawcookie('conn', "", time() + 60 * 60 * 24, "/");
+        setrawcookie('stayCon', 'off', time() + 60 * 60 * 24, '/');
+        setrawcookie('pseudo', '', time() + 60 * 60 * 24, '/');
+        setrawcookie('id', '', time() + 60 * 60 * 24, '/');
+        setrawcookie('conn', '', time() + 60 * 60 * 24, '/');
     }
 
 } else {
-    setrawcookie('stayCon', "on", time() + 60 * 60 * 24, "/");
-    setrawcookie('pseudo', "", time() + 60 * 60 * 24, "/");
-    setrawcookie('id', "", time() + 60 * 60 * 24, "/");
-    setrawcookie('conn', "", time() + 60 * 60 * 24, "/");
+    setrawcookie('stayCon', 'off', time() + 60 * 60 * 24, '/');
+    setrawcookie('pseudo', '', time() + 60 * 60 * 24, '/');
+    setrawcookie('id', '', time() + 60 * 60 * 24, '/');
+    setrawcookie('conn', '', time() + 60 * 60 * 24, '/');
 }
 
 if (isset($_COOKIE['stayCon'])) {
@@ -43,8 +43,7 @@ if (isset($_COOKIE['stayCon'])) {
 }
 
 
-function conn()
-{
+function conn() {
     $conn = $GLOBALS['conn'];
     if (isset($_POST["login"])) {
 
@@ -66,9 +65,9 @@ function conn()
 
                 $_SESSION['id'] = $row['id'];
                 $_SESSION['pseudo'] = $row['pseudo'];
-                setrawcookie('conn', "on", time() + 60 * 60 * 24, "/");
-                setcookie('id', $row['id'], time() + 60 * 60 * 24, "/");
-                setcookie('pseudo', $row['pseudo'], time() + 60 * 60 * 24, "/");
+                setrawcookie('conn', 'on', time() + 60 * 60 * 24, '/');
+                setcookie('id', $row['id'], time() + 60 * 60 * 24, '/');
+                setcookie('pseudo', $row['pseudo'], time() + 60 * 60 * 24, '/');
                 header('Location: https://quicklearn.yj.fr/en/home.php');
                 exit();
             } else {
