@@ -26,7 +26,7 @@ if (isset($_COOKIE['stayCon'])) {
         if ($_COOKIE['conn'] == "on") {
             $_SESSION['id'] = $_COOKIE['id'];
             $_SESSION['pseudo'] = $_COOKIE['pseudo'];
-            header('Location: home.php');
+            header('Location: ./home.php');
             exit();
         } else {
             conn();
@@ -62,7 +62,7 @@ function conn() {
                 setrawcookie('conn', 'on', time() + 60 * 60 * 24, '/');
                 setcookie('id', $row['id'], time() + 60 * 60 * 24, '/');
                 setcookie('pseudo', $row['pseudo'], time() + 60 * 60 * 24, '/');
-                header('Location: /home.php');
+                header('Location: ./home.php');
                 exit();
             } else {
                 setrawcookie('stayCon');
