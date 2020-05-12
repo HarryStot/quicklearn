@@ -60,48 +60,48 @@
         <input type="text" name="urFriend" id="urFriend" placeholder="Your friend name">
         <button type="button" name="selectFriend" id="selFr" onclick="chooseFriend()">Submit</button>
     </form>
-    <div about="big Zone text">
-        <div about="zone name">
-            <div about="zone click name">
-                <div about="photo">
-
-                </div>
-                <div about="name" onclick="show()">
-                    <h1></h1>
-                </div>
-            </div>
-        </div>
-        <div about="zone message">
-            <div about="border">
-                <div about="message">
-                    <div about="message other" id="test2">
-                        <!-- TODO: With JS modify the text IDEM for my message -->
-                        <p id="test">Test</p>
-                    </div>
-                    <div about="message me on right">
-
-                    </div>
-                </div>
-                <div about="send message">
-                    <div about="other">
-                        <div about="share list">
-
-                        </div>
-                    </div>
-                    <div about="form message">
-                        <form method="POST">
-                            <div about="message">
-                                <input type="text" name="urMessage" id="urMessage">
-                            </div>
-                            <div about="btn send message">
-                                <button type="button" name="sendMes" id="sendMes" onclick="send()">Send</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<!--    <div about="big Zone text">-->
+<!--        <div about="zone name">-->
+<!--            <div about="zone click name">-->
+<!--                <div about="photo">-->
+<!---->
+<!--                </div>-->
+<!--                <div about="name" onclick="show()">-->
+<!--                    <h1></h1>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div about="zone message">-->
+<!--            <div about="border">-->
+<!--                <div about="message">-->
+<!--                    <div about="message other" id="test2">-->
+<!--                        <!-- TODO: With JS modify the text IDEM for my message -->-->
+<!--                        <p id="test">Test</p>-->
+<!--                    </div>-->
+<!--                    <div about="message me on right">-->
+<!---->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div about="send message">-->
+<!--                    <div about="other">-->
+<!--                        <div about="share list">-->
+<!---->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div about="form message">-->
+<!--                        <form method="POST">-->
+<!--                            <div about="message">-->
+<!--                                <input type="text" name="urMessage" id="urMessage">-->
+<!--                            </div>-->
+<!--                            <div about="btn send message">-->
+<!--                                <button type="button" name="sendMes" id="sendMes" onclick="send()">Send</button>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 <!--  New code    -->
     <div class="row">
         <div class="col-3 friend">
@@ -141,53 +141,21 @@
 
     <div class="col-9">
       <table class="table-mess">
-        <tbody>
-          <tr>
-            <td></td>
-            <td>
-              <div class="message right" data-toggle="tooltip" data-placement="left" title="Tooltip on left"
-                id="tooltip">
-                <div class="text-mess right">
-                  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Laboriosam perferendis tempora voluptate officiis
-                    exercitationem sed fuga doloremque, tenetur ab molestias
-                    facilis nobis, autem eligendi suscipit magnam eos aliquam
-                    accusamus unde.</span>
-                </div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div class="message left" data-toggle="tooltip" data-placement="right" title="Tooltip on right"
-                id="tooltip2">
-                <div class="text-mess">
-                  <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Asperiores quibusdam consequatur eligendi excepturi ipsum
-                    officiis dolores praesentium, aut laborum aperiam sint,
-                    ducimus sequi sunt accusantium. Optio nam voluptatibus
-                    dicta eum.</span>
-                </div>
-              </div>
-            </td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>
-              <div class="message left">
-                <div class="text-mess">
-                  <span>Lorem ipsum dolor sit amet.</span>
-                </div>
-              </div>
-            </td>
-            <td></td>
-          </tr>
+        <tbody id="table-body">
+
         </tbody>
       </table>
     </div>
   </div>
-    
-    
+
+    <form method="POST"> <!-- todo: make better -->
+        <div about="message">
+            <input type="text" name="urMessage" id="urMessage">
+        </div>
+        <div about="btn send message">
+            <button type="button" name="sendMes" id="sendMes" onclick="send()">Send</button>
+        </div>
+    </form>
     
     
     <script>
@@ -216,33 +184,60 @@
             xhr.send("nameFr=" + friendN);
         }
 
-        var divMes = document.getElementById("test");
+        var tableMes = document.getElementById("table-body");
 
         function show() {
-            destruct();
+            destruct(); // suprime les anciens message pour ne pas faire de duplication
             getMessage();
-            /*create a DIV element that will contain the items (values):*/
-            let a = document.createElement("DIV");
-            a.setAttribute("class", "test");
-            /*append the DIV element as a child of the container:*/
-            divMes.parentNode.appendChild(a);
-            /*for each item in the array...*/
+
+            /*for each message in the array...*/
             for (i = 0; i < message.length; i++) {
-                let b = document.createElement("DIV");
+                /* créer élement <tr> */
+                let a = document.createElement("tr");
+
+                /*append the element as a child of the tr: */
+                tableMes.parentNode.appendChild(a);
+
+                let b = document.createElement("td");
                 if (message[i][1] == id) {
-                    b.setAttribute("class", "text-right btn-primary");
+                    // message from me
+                    let cR = document.createElement("td");
+
+                    let dR = document.createElement("div");
+                    dR.setAttribute('class', 'message right');
+                    cR.appendChild(dR);
+
+                    let eR = document.createElement("div");
+                    eR.setAttribute('class', 'text-mess');
+                    dR.appendChild(eR);
+
+                    let fR = document.createElement("span");
+                    eR.appendChild(fR);
+
+                    fR.innerHTML += message[i][3];
                 } else {
-                    b.setAttribute("class", "text-left btn-danger");
+                    // message from friend
+                    let dL = document.createElement("div");
+                    dL.setAttribute('class', 'message left');
+                    b.appendChild(dL);
+
+                    let eL = document.createElement("div");
+                    eL.setAttribute('class', 'text-mess');
+                    dL.appendChild(eL);
+
+                    let fL = document.createElement("span");
+                    eL.appendChild(fL);
+
+                    fL.innerHTML += message[i][3];
                 }
 
-                b.innerHTML += message[i][3];
                 a.appendChild(b);
             }
             showLapse();
         }
 
         function destruct() {
-            var x = document.getElementsByClassName("test");
+            var x = document.getElementsByClassName("table-body");
             for (let i = 0; i < x.length; i++) {
                 x[i].parentNode.removeChild(x[i]);
             }
