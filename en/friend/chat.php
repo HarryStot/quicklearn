@@ -102,6 +102,94 @@
             </div>
         </div>
     </div>
+<!--  New code    -->
+    <div class="row">
+        <div class="col-3 friend">
+          <ul>
+            <li class="list-friend">
+              <div class="text-friend">
+                <span>Lorem ipsum dolor sit amet.</span>
+              </div>
+            </li>
+            <li class="list-friend">
+              <div class="text-friend">
+                <span>Lorem ipsum dolor sit amet.</span>
+              </div>
+            </li>
+            <li class="list-friend">
+              <div class="text-friend">
+                <span>Lorem ipsum dolor sit amet.</span>
+              </div>
+            </li>
+            <li class="list-friend">
+              <div class="text-friend">
+                <span>Lorem ipsum dolor sit amet.</span>
+              </div>
+            </li>
+            <li class="list-friend">
+              <div class="text-friend">
+                <span>Lorem ipsum dolor sit amet.</span>
+              </div>
+            </li>
+            <li class="list-friend">
+              <div class="text-friend">
+                <span>Lorem ipsum dolor sit amet.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+    <div class="col-9">
+      <table class="table-mess">
+        <tbody>
+          <tr>
+            <td></td>
+            <td>
+              <div class="message right" data-toggle="tooltip" data-placement="left" title="Tooltip on left"
+                id="tooltip">
+                <div class="text-mess right">
+                  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Laboriosam perferendis tempora voluptate officiis
+                    exercitationem sed fuga doloremque, tenetur ab molestias
+                    facilis nobis, autem eligendi suscipit magnam eos aliquam
+                    accusamus unde.</span>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="message left" data-toggle="tooltip" data-placement="right" title="Tooltip on right"
+                id="tooltip2">
+                <div class="text-mess">
+                  <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Asperiores quibusdam consequatur eligendi excepturi ipsum
+                    officiis dolores praesentium, aut laborum aperiam sint,
+                    ducimus sequi sunt accusantium. Optio nam voluptatibus
+                    dicta eum.</span>
+                </div>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <div class="message left">
+                <div class="text-mess">
+                  <span>Lorem ipsum dolor sit amet.</span>
+                </div>
+              </div>
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+    
+    
+    
+    
     <script>
         // noinspection JSAnnotator
         const id = <?php echo $id;?>;
