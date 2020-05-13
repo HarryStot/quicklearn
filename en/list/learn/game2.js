@@ -93,7 +93,7 @@ function draw(){
     }
     if (gameTurn >= listVoc.length){
         background(0);
-        console.log("cfini");
+        // console.log("cfini");
         fill(31, 160, 85);
         textSize(30);
         textAlign(CENTER);
@@ -104,7 +104,24 @@ function draw(){
             afficher_saveButton();
             inputPannelTradDisplay = false;
         }
+        // todo: requete http -> renvoi in db
+
+        let arrId = JSON.stringify(listIdVoc);
+        let arrDif = JSON.stringify(listSucces);
+
+        let xhr = new XMLHttpRequest; // avec des requete HTTP
+
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                // c'est update (peut appeller fonction affiche restart)
+            }
+        };
+        xhr.open("POST", "updateDif.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("arrId=" + arrId + "&arrDif=" + arrDif);
     }
+
+
 
 
 }
@@ -177,13 +194,14 @@ function verifVoc() {
 
     if (saisieTrad === trad) {
         //alert("t'as bon ! t'a vu c'était trivial");
-        listSucces[gameTurn] = listSucces[gameTurn]+50;
+        listSucces[gameTurn] = parseInt(listSucces[gameTurn]);
+        listSucces[gameTurn] += 50;
         responseValue = true;
 
 
 
     }else{
-        listSucces[gameTurn] = listSucces[gameTurn]-50;
+        listSucces[gameTurn] -= 50;
         responseValue = false;
 
 
@@ -261,5 +279,3 @@ function keyPressed() {
     }
 
 }
-
-
