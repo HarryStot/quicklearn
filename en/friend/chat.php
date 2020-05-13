@@ -41,10 +41,22 @@ global $id, $usPseudo, $conn;
 //
 //    }
 
-//    $conn->close();
+    $sql_requFriend = "SELECT * FROM friend JOIN users ON (friend.id_user1 = users.id OR friend.id_user2 = users.id) AND users.id != '$id'";
+    $res_reqFriend = $conn->query($sql_requFriend);         // récup tout les amis avec leurs id et nom
+    if ($res_reqFriend->num_rows > 0) {
+        while ($infoFriend = $res_reqFriend->fetch_array()) {
+            $arrFriendName[] = $infoFriend['pseudo'];
+            $arrFriendId[] = $infoFriend['id'];
+        }
+    } else {
+        // no friend
+    }
+
+
+    $conn->close();
 ?>
 <!DOCTYPE html>
-<html lang="en" onload="show()">
+<html lang="en" onload="chooseFriend()">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -105,37 +117,8 @@ global $id, $usPseudo, $conn;
 <!--  New code    -->
 <div class="row">
     <div class="col-3 friend">
-        <ul>
-            <li class="list-friend">
-                <div class="text-friend">
-                    <span>Lorem ipsum dolor sit amet.</span>
-                </div>
-            </li>
-            <li class="list-friend">
-                <div class="text-friend">
-                    <span>Lorem ipsum dolor sit amet.</span>
-                </div>
-            </li>
-            <li class="list-friend">
-                <div class="text-friend">
-                    <span>Lorem ipsum dolor sit amet.</span>
-                </div>
-            </li>
-            <li class="list-friend">
-                <div class="text-friend">
-                    <span>Lorem ipsum dolor sit amet.</span>
-                </div>
-            </li>
-            <li class="list-friend">
-                <div class="text-friend">
-                    <span>Lorem ipsum dolor sit amet.</span>
-                </div>
-            </li>
-            <li class="list-friend">
-                <div class="text-friend">
-                    <span>Lorem ipsum dolor sit amet.</span>
-                </div>
-            </li>
+        <ul id="ulFriend">
+
         </ul>
     </div>
 
@@ -161,26 +144,53 @@ global $id, $usPseudo, $conn;
     // noinspection JSAnnotator
     const id = <?php echo $id;?>;
     // noinspection JSAnnotator
-    var idFr = null; // temp
+    var arrNaFr = <?php echo json_encode($arrFriendName);?>;
+    var arrIdFr = <?php echo json_encode($arrFriendId);?>;
 
-    var message = {}; //temp
+    var message = {};
 
     function chooseFriend() {
-        let friendBox = document.getElementById("urFriend");
-        let friendN = friendBox.value;
-        friendBox.value = "";
-        let xhr = new XMLHttpRequest;
+        // destruct friend
+        let ulFr = document.getElementById("ulFriend");
 
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                idFr = this.responseText;
-                getMessage();
-                showMiniLaps();
-            }
-        };
-        xhr.open("POST", "chooseFriend.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("nameFr=" + friendN);
+        for (i = 0; i < arrNaFr.length; i++) { // pour tout les amis
+            /* créer élement <li> */
+            let li = document.createElement("LI");
+            li.setAttribute('class', 'list-friend');
+            // add background color here
+            ulFr.appendChild(li);
+
+            let btn = document.createElement("BUTTON");
+            btn.setAttribute('class', 'btn btn-friend');
+            btn.setAttribute('onfocus', 'this.blur()');
+            // add on click change fiend
+            li.appendChild(btn);
+
+            let div = document.createElement("DIV");
+            div.setAttribute('class', 'text-friend');
+            // add color text here
+            btn.appendChild(div);
+
+            let span = document.createElement("SPAN");
+            span.innerHTML = arrNaFr[i];
+            btn.appendChild(span);
+        }
+
+        // let friendBox = document.getElementById("urFriend");
+        // let friendN = friendBox.value;
+        // friendBox.value = "";
+        // let xhr = new XMLHttpRequest;
+        //
+        // xhr.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         idFr = this.responseText;
+        //         getMessage();
+        //         showMiniLaps();
+        //     }
+        // };
+        // xhr.open("POST", "chooseFriend.php", true);
+        // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        // xhr.send("nameFr=" + friendN);
     }
 
     var tableMes = document.getElementById("table-body");

@@ -45,15 +45,19 @@
 
 .list-friend {
     list-style-type: none;
-    color: white;
     background-color: rgb(134, 49, 102);
     margin: 15px;
-    margin-left: auto;
+    margin-left: 0;
     border-radius: 10px;
+    max-width: 250px;
 }
 
 .text-friend {
-    margin: 10px;
-    margin-top: auto;
-    margin-bottom: auto;
+    color: white;
+    margin: 0;
+}
+
+btn.btn-friend {
+    border: none;
+    /* color: white; */
 }
