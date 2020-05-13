@@ -68,10 +68,10 @@ global $id, $usPseudo, $conn;
     <link rel="icon" type="image/png" href="https://i.ibb.co/99nFZkB/qlmin.png"/>
 </head>
 <body>
-<form method="post">
-    <input type="text" name="urFriend" id="urFriend" placeholder="Your friend name">
-    <button type="button" name="selectFriend" id="selFr" onclick="chooseFriend()">Submit</button>
-</form>
+<!--<form method="post">-->
+<!--    <input type="text" name="urFriend" id="urFriend" placeholder="Your friend name">-->
+<!--    <button type="button" name="selectFriend" id="selFr" onclick="chooseFriend()">Submit</button>-->
+<!--</form>-->
 <!--    <div about="big Zone text">-->
 <!--        <div about="zone name">-->
 <!--            <div about="zone click name">-->
@@ -149,6 +149,8 @@ global $id, $usPseudo, $conn;
     let idFr;
 
     var message = {};
+
+    chooseFriend();
 
     function chooseFriend() {
         // destruct friend
