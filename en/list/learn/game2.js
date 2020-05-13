@@ -13,6 +13,7 @@ var buttonTradValue = false;
 var gameTurn = 0;
 var responseValue;
 var inputPannelTradDisplay = true;
+let xhrState = false;
 
 function setup() {
     canvas = createCanvas(innerWidth, innerHeight/1.5);
@@ -45,9 +46,8 @@ function draw(){
     var button= document.querySelector("button"); // acceder au bouton //
     button.addEventListener("click", check);
 
-    if (buttonTradValue == true) {
+    if (buttonTradValue) {
         verifVoc();
-
     }
 
 
@@ -61,9 +61,9 @@ function draw(){
     //     gameTurn = gameTurn +1;
     //     buttonTradValue = false;
 
-    if(gameTurn > 0 & buttonTradValue == true & gameTurn<= listVoc.length){
+    if(gameTurn > 0 && buttonTradValue && gameTurn<= listVoc.length){
         background(255);
-        if(responseValue == true){
+        if(responseValue){
             fill(0,255,0);
             textSize(30);
             textAlign(CENTER);
@@ -99,26 +99,28 @@ function draw(){
         textAlign(CENTER);
         text("Fin de la partie ! Tu peux voir tes stats juste en dessous. N'oublie pas de clicker sur enregistrer pour sauvegarder tes résultats !",width/2,height/2);
 
-        if (inputPannelTradDisplay == true){
+        if (inputPannelTradDisplay){
             masquer_inputPannelTrad();
             afficher_saveButton();
             inputPannelTradDisplay = false;
         }
-        // todo: requete http -> renvoi in db
 
-        let arrId = JSON.stringify(listIdVoc);
-        let arrDif = JSON.stringify(listSucces);
+        if (!xhrState) {
+            let arrId = JSON.stringify(listIdVoc);
+            let arrDif = JSON.stringify(listSucces);
 
-        let xhr = new XMLHttpRequest; // avec des requete HTTP
+            let xhr = new XMLHttpRequest(); // avec des requete HTTP
 
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                // c'est update (peut appeller fonction affiche restart)
-            }
-        };
-        xhr.open("POST", "updateDif.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("arrId=" + arrId + "&arrDif=" + arrDif);
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    // c'est update (peut appeller fonction affiche restart)
+                    xhrState = true;
+                }
+            };
+            xhr.open("POST", "updateDif.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("arrId=" + arrId + "&arrDif=" + arrDif + "&idUs=" + idUs);
+        }
     }
 
 
@@ -141,7 +143,7 @@ function createListGame(arrayIdDatabase,arrayVocDatabase,arrayTradDatabase,array
 function afficher_saveButton(){
     divInfo = document.getElementById('saveButton');
 
-    if (divInfo.style.display == 'none'){
+    if (divInfo.style.display === 'none'){
         divInfo.style.display = 'block';
     }else{
         divInfo.style.display = 'none';
@@ -155,7 +157,7 @@ function masquer_inputPannelTrad() {
 
     divInfo = document.getElementById('inputPannelTrad');
 
-    if (divInfo.style.display == 'none'){
+    if (divInfo.style.display === 'none'){
         divInfo.style.display = 'block';
     }else{
         divInfo.style.display = 'none';
@@ -262,12 +264,12 @@ function refuserToucheEntree(event)
         event = window.event;
     }
     // code pour internet explorer
-    if(event.keyCode == 13) {
+    if(event.keyCode === 13) {
         event.returnValue = false;
         event.cancelBubble = true;
     }
 
-    if(event.which == 13) {
+    if(event.which === 13) {
         event.preventDefault();
         event.stopPropagation();
     }
@@ -277,5 +279,4 @@ function keyPressed() {
     if (keyCode === ENTER) {
         buttonTradValue = true;
     }
-
 }
