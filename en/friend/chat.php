@@ -196,7 +196,7 @@ global $id, $usPseudo, $conn;
     }
 
     function changeFr(newIdFr) {
-        idFr = newIdFr:
+        idFr = newIdFr;
         show();
     }
 
