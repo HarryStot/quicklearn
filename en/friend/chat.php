@@ -87,7 +87,7 @@ global $id, $usPseudo, $conn;
 <!--            <div about="border">-->
 <!--                <div about="message">-->
 <!--                    <div about="message other" id="test2">-->
-<!--                        <!-- TODO: With JS modify the text IDEM for my message -->-->
+<!--                        <!-- TODO: With JS modify the text IDEM for my message -->
 <!--                        <p id="test">Test</p>-->
 <!--                    </div>-->
 <!--                    <div about="message me on right">-->
