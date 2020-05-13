@@ -146,6 +146,7 @@ global $id, $usPseudo, $conn;
     // noinspection JSAnnotator
     var arrNaFr = <?php echo json_encode($arrFriendName);?>;
     var arrIdFr = <?php echo json_encode($arrFriendId);?>;
+    let idFr;
 
     var message = {};
 
@@ -154,22 +155,23 @@ global $id, $usPseudo, $conn;
         let ulFr = document.getElementById("ulFriend");
 
         for (i = 0; i < arrNaFr.length; i++) { // pour tout les amis
-            /* créer élement <li> */
-            let li = document.createElement("LI");
-            li.setAttribute('class', 'list-friend');
-            // add background color here
-            ulFr.appendChild(li);
+            /* créer élement <div> */
+            let div1 = document.createElement("DIV");
+            div1.setAttribute('class', 'list-friend');
+            // add background color heres
+            ulFr.appendChild(div1);
 
             let btn = document.createElement("BUTTON");
             btn.setAttribute('class', 'btn btn-friend');
             btn.setAttribute('onfocus', 'this.blur()');
             // add on click change fiend
-            li.appendChild(btn);
+            btn.setAttribute('onclick', 'changeFr(' + arrIdFr[i] + ')');
+            div1.appendChild(btn);
 
-            let div = document.createElement("DIV");
-            div.setAttribute('class', 'text-friend');
+            let div2 = document.createElement("DIV");
+            div2.setAttribute('class', 'text-friend');
             // add color text here
-            btn.appendChild(div);
+            btn.appendChild(div2);
 
             let span = document.createElement("SPAN");
             span.innerHTML = arrNaFr[i];
@@ -191,6 +193,11 @@ global $id, $usPseudo, $conn;
         // xhr.open("POST", "chooseFriend.php", true);
         // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         // xhr.send("nameFr=" + friendN);
+    }
+
+    function changeFr(newIdFr) {
+        idFr = newIdFr:
+        show();
     }
 
     var tableMes = document.getElementById("table-body");
