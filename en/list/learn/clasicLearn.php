@@ -5,31 +5,22 @@ global $id, $usPseudo, $conn;
 
 $idList = "7"; // todo: select list in home list
 
-$voc = [];
-$def = [];
-$idVocDef = [];
 
-$sql_reqListVoc = "SELECT id_voc FROM listVoc WHERE id_list='$idList'";
+$sql_reqListVoc = "SELECT * 
+                    FROM voc
+                    JOIN listVoc
+                        ON listVoc.id_list=7 AND listVoc.id_voc=voc.id_voc
+                    JOIN vocDif 
+                        ON vocDif.id_voc=voc.id_voc";
 $res_reqListVoc = $conn->query($sql_reqListVoc);
 if ($res_reqListVoc->num_rows > 0) {
-    while ($infoIDVoc = $res_reqListVoc->fetch_array()) {
-        $arrayIDVoc[] = $infoIDVoc;
+    while ($infoVoc = $res_reqListVoc->fetch_array()) {
+        $arrayIDVoc[] = $infoVoc['id_voc'];
+        $arrayVoc[] = $infoVoc['voc1'];
+        $arrayDef[] = $infoVoc['voc2'];
+        $arrayDiff[] = $infoVoc['diff'];
     }
 
-    foreach ($arrayIDVoc as $item) {
-        $idVoc = $item['id_voc'];
-        $sql_reqVoc = "SELECT * FROM voc WHERE id_voc='$idVoc'";
-        $res_reqVoc = $conn->query($sql_reqVoc);
-
-        if ($res_reqVoc->num_rows > 0) {
-            $infoVoc = $res_reqVoc->fetch_array();
-            $idVocDef[] = $infoVoc['id_voc'];
-            $voc1 = $infoVoc['voc1']; // OU $voc[] = $infoVoc['voc1'];
-            $voc2 = $infoVoc['voc2']; //  A
-            array_push($voc, $voc1);  //  | dans ce cas supr cette ligne
-            array_push($def, $voc2);
-        }
-    }
 }
 
 $conn->close();
@@ -98,10 +89,10 @@ $conn->close();
 </div>
 
 <script>
-    var listIdVocDatabase = <?php echo json_encode($idVocDef); ?>;
-    var listVocDatabase = <?php echo json_encode($def); ?>;
-    var listTradDatabase = <?php echo json_encode($voc); ?>;
-    var listSuccesDataBase = [0,0,0,0,0,0,0];
+    var listIdVocDatabase = <?php echo json_encode($arrayIDVoc); ?>;
+    var listVocDatabase = <?php echo json_encode($arrayDef); ?>;
+    var listTradDatabase = <?php echo json_encode($arrayVoc); ?>;
+    var listSuccesDataBase = <?php echo json_encode($arrayDiff); ?>;
 </script>
 
 <script language="javascript" type="text/javascript" src="game2.js"></script>

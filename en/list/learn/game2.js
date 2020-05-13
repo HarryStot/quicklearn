@@ -73,7 +73,9 @@ function draw(){
             fill(255,0,0);
             textSize(30);
             textAlign(CENTER);
-            text("Mauvaise réponse mais tkt ça va venir",width/2,(height+400)/2);
+            text("Mauvaise réponse mais tkt ça va venir, la vraie réponse était :",width/2,(height+400)/2);
+            textSize(50);
+            text(listTrad[gameTurn],width/2,(height+550)/2);
 
         }
 

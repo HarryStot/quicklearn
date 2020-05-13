@@ -38,7 +38,7 @@
                     $idList = $infoList['id_list'];
 
                     // insert into listUser
-                    $sql_insertListUser = "INSERT INTO listUser (id_list,id_user) VALUES ('$idList','$id')";
+                    $sql_insertListUser = "INSERT INTO listUser (id_list, id_user) VALUES ('$idList','$id')";
                     if ($conn->query($sql_insertListUser)) {
                         $list[0] = $idList;  // $list[id,name]
                         $list[1] = $nameList;
@@ -125,6 +125,7 @@
 
     function addVoc() {
         $conn2 = $GLOBALS['conn'];
+        $idUs = $GLOBALS['id'];
         $idList = $_SESSION['list'][0];
 
         $voc = $_POST['voc'];
@@ -145,6 +146,22 @@
                 } else {
                     echo "err";
                 }
+
+                $sql_reqDif = "SELECT * FROM vocDif WHERE id_user='$idUs' AND id_voc='$idNewVoc'";
+                $res_reqDif = $conn2->query($sql_reqDif);
+                if ($res_reqDif->num_rows > 0) {
+                    // déjà dans la db -> ce qui n'est pas normal
+                } else {
+                    $sql_insertDif = "INSERT INTO vocDif (id_user, id_voc, dif) VALUES ('$idUs', '$idNewVoc', '0')";
+                    if ($conn2->query($sql_insertDif)) {
+                        // ajout dans table vocDif
+                    } else {
+                        echo "Une erreur c'est produite";
+                    }
+
+                }
+
+
             } else {
                 echo "grosse err";
             }
