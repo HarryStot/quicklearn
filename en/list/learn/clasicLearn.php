@@ -3,7 +3,7 @@ include "../../../init.php";
 include '../../../database.php';
 global $id, $usPseudo, $conn;
 
-$idList = "1"; // todo: select list in home list
+$idList = "7"; // todo: select list in home list
 
 $voc = [];
 $def = [];

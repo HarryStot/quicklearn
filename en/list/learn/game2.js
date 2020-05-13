@@ -167,7 +167,9 @@ function shuffle4(arrayVoc,arrayTrad,arraySucces,arrayId) {
 
 
 function verifVoc() {
-    var saisieTrad = document.getElementById("tradInput").value;
+    let inputTrad = document.getElementById("tradInput");
+    var saisieTrad = inputTrad.value;
+    inputTrad.value = "";
     saisieTrad = changeString(saisieTrad);
     trad = changeString(trad);
 
