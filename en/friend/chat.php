@@ -56,7 +56,7 @@ global $id, $usPseudo, $conn;
     $conn->close();
 ?>
 <!DOCTYPE html>
-<html lang="en" onload="chooseFriend()">
+<html lang="en" onload="showMiniLaps()">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -206,51 +206,52 @@ global $id, $usPseudo, $conn;
         destruct(); // suprime les anciens message pour ne pas faire de duplication
         getMessage(); // récup les messages dans la base de données
 
-        /*for each message in the array...*/
-        for (i = 0; i < message.length; i++) {
-            /* créer élement <tr> */
-            let a = document.createElement("TR");
+        if (message.length) {
+            /*for each message in the array...*/
+            for (i = 0; i < message.length; i++) {
+                /* créer élement <tr> */
+                let a = document.createElement("TR");
 
-            /*append the element as a child of the tr: */
-            tableMes.appendChild(a);
+                /*append the element as a child of the tr: */
+                tableMes.appendChild(a);
 
-            let b = document.createElement("TD");
-            if (message[i][1] == id) {
-                // message from me
-                let cR = document.createElement("td");
+                let b = document.createElement("TD");
+                if (message[i][1] == id) {
+                    // message from me
+                    let cR = document.createElement("td");
 
-                let dR = document.createElement("div");
-                dR.setAttribute('class', 'message right');
-                cR.appendChild(dR);
+                    let dR = document.createElement("div");
+                    dR.setAttribute('class', 'message right');
+                    cR.appendChild(dR);
 
-                let eR = document.createElement("div");
-                eR.setAttribute('class', 'text-mess');
-                dR.appendChild(eR);
+                    let eR = document.createElement("div");
+                    eR.setAttribute('class', 'text-mess');
+                    dR.appendChild(eR);
 
-                let fR = document.createElement("span");
-                eR.appendChild(fR);
+                    let fR = document.createElement("span");
+                    eR.appendChild(fR);
 
-                fR.innerHTML += message[i][3];
-                a.appendChild(b);
-                a.appendChild(cR);
-            } else {
-                // message from friend
-                let dL = document.createElement("div");
-                dL.setAttribute('class', 'message left');
-                b.appendChild(dL);
+                    fR.innerHTML += message[i][3];
+                    a.appendChild(b);
+                    a.appendChild(cR);
+                } else {
+                    // message from friend
+                    let dL = document.createElement("div");
+                    dL.setAttribute('class', 'message left');
+                    b.appendChild(dL);
 
-                let eL = document.createElement("div");
-                eL.setAttribute('class', 'text-mess');
-                dL.appendChild(eL);
+                    let eL = document.createElement("div");
+                    eL.setAttribute('class', 'text-mess');
+                    dL.appendChild(eL);
 
-                let fL = document.createElement("span");
-                eL.appendChild(fL);
+                    let fL = document.createElement("span");
+                    eL.appendChild(fL);
 
-                fL.innerHTML += message[i][3];
-                a.appendChild(b);
+                    fL.innerHTML += message[i][3];
+                    a.appendChild(b);
+                }
+
             }
-
-
         }
         showLapse();
     }
@@ -264,6 +265,7 @@ global $id, $usPseudo, $conn;
 
     function showMiniLaps() {
         setTimeout(function () {
+            chooseFriend();
             getMessage();
             show();
         }, 1000);
