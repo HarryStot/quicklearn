@@ -1,6 +1,6 @@
 <?php
     include "../../init.php";
-    include "../../dataBase.php";
+    include "../../database.php";
     global $id, $usPseudo, $conn;
 
     $sql = "SELECT id_class, name FROM class WHERE 1";

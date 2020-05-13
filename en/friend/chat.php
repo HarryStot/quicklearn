@@ -1,7 +1,7 @@
 <?php
-    include "../../init.php";
-    include '../../dataBase.php';
-    global $id, $usPseudo, $conn;
+include "../../init.php";
+include '../../database.php';
+global $id, $usPseudo, $conn;
 
 //    $friend = false;
 //    $friendN = "John";
@@ -51,15 +51,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link href="../style2.css" rel="stylesheet" type="text/css">
-    <title>QuickLearn - Chat with your friend</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Chat with your friend - QuickLearn</title>
     <link rel="icon" type="image/png" href="https://i.ibb.co/99nFZkB/qlmin.png"/>
 </head>
 <body>
-    <form method="post">
-        <input type="text" name="urFriend" id="urFriend" placeholder="Your friend name">
-        <button type="button" name="selectFriend" id="selFr" onclick="chooseFriend()">Submit</button>
-    </form>
+<form method="post">
+    <input type="text" name="urFriend" id="urFriend" placeholder="Your friend name">
+    <button type="button" name="selectFriend" id="selFr" onclick="chooseFriend()">Submit</button>
+</form>
 <!--    <div about="big Zone text">-->
 <!--        <div about="zone name">-->
 <!--            <div about="zone click name">-->
@@ -103,206 +103,210 @@
 <!--        </div>-->
 <!--    </div>-->
 <!--  New code    -->
-    <div class="row">
-        <div class="col-3 friend">
-          <ul>
+<div class="row">
+    <div class="col-3 friend">
+        <ul>
             <li class="list-friend">
-              <div class="text-friend">
-                <span>Lorem ipsum dolor sit amet.</span>
-              </div>
+                <div class="text-friend">
+                    <span>Lorem ipsum dolor sit amet.</span>
+                </div>
             </li>
             <li class="list-friend">
-              <div class="text-friend">
-                <span>Lorem ipsum dolor sit amet.</span>
-              </div>
+                <div class="text-friend">
+                    <span>Lorem ipsum dolor sit amet.</span>
+                </div>
             </li>
             <li class="list-friend">
-              <div class="text-friend">
-                <span>Lorem ipsum dolor sit amet.</span>
-              </div>
+                <div class="text-friend">
+                    <span>Lorem ipsum dolor sit amet.</span>
+                </div>
             </li>
             <li class="list-friend">
-              <div class="text-friend">
-                <span>Lorem ipsum dolor sit amet.</span>
-              </div>
+                <div class="text-friend">
+                    <span>Lorem ipsum dolor sit amet.</span>
+                </div>
             </li>
             <li class="list-friend">
-              <div class="text-friend">
-                <span>Lorem ipsum dolor sit amet.</span>
-              </div>
+                <div class="text-friend">
+                    <span>Lorem ipsum dolor sit amet.</span>
+                </div>
             </li>
             <li class="list-friend">
-              <div class="text-friend">
-                <span>Lorem ipsum dolor sit amet.</span>
-              </div>
+                <div class="text-friend">
+                    <span>Lorem ipsum dolor sit amet.</span>
+                </div>
             </li>
-          </ul>
-        </div>
+        </ul>
+    </div>
 
     <div class="col-9">
-      <table class="table-mess">
-        <tbody id="table-body">
+        <table class="table-mess">
+            <tbody id="table-body" class="table-body">
 
-        </tbody>
-      </table>
+            </tbody>
+        </table>
     </div>
-  </div>
+</div>
 
-    <form method="POST"> <!-- todo: make better -->
-        <div about="message">
-            <input type="text" name="urMessage" id="urMessage">
-        </div>
-        <div about="btn send message">
-            <button type="button" name="sendMes" id="sendMes" onclick="send()">Send</button>
-        </div>
-    </form>
-    
-    
-    <script>
-        // noinspection JSAnnotator
-        const id = <?php echo $id;?>;
-        // noinspection JSAnnotator
-        var idFr = null;
+<form method="POST"> <!-- todo: make better -->
+    <div about="message">
+        <input type="text" name="urMessage" id="urMessage">
+    </div>
+    <div about="btn send message">
+        <button type="button" name="sendMes" id="sendMes" onclick="send()">Send</button>
+    </div>
+</form>
 
-        var message;
+<script>
+    // noinspection JSAnnotator
+    const id = <?php echo $id;?>;
+    // noinspection JSAnnotator
+    var idFr = null; // temp
 
-        function chooseFriend() {
-            let friendBox = document.getElementById("urFriend");
-            let friendN = friendBox.value;
-            friendBox.value = "";
-            let xhr = new XMLHttpRequest;
+    var message = {}; //temp
 
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    idFr = this.responseText;
-                    getMessage();
-                    showMiniLaps();
-                }
-            };
-            xhr.open("POST", "chooseFriend.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("nameFr=" + friendN);
-        }
+    function chooseFriend() {
+        let friendBox = document.getElementById("urFriend");
+        let friendN = friendBox.value;
+        friendBox.value = "";
+        let xhr = new XMLHttpRequest;
 
-        var tableMes = document.getElementById("table-body");
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                idFr = this.responseText;
+                getMessage();
+                showMiniLaps();
+            }
+        };
+        xhr.open("POST", "chooseFriend.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("nameFr=" + friendN);
+    }
 
-        function show() {
-            destruct(); // suprime les anciens message pour ne pas faire de duplication
-            getMessage();
+    var tableMes = document.getElementById("table-body");
 
-            /*for each message in the array...*/
-            for (i = 0; i < message.length; i++) {
-                /* créer élement <tr> */
-                let a = document.createElement("tr");
+    function show() {
+        destruct(); // suprime les anciens message pour ne pas faire de duplication
+        getMessage(); // récup les messages dans la base de données
 
-                /*append the element as a child of the tr: */
-                tableMes.parentNode.appendChild(a);
+        /*for each message in the array...*/
+        for (i = 0; i < message.length; i++) {
+            /* créer élement <tr> */
+            let a = document.createElement("TR");
 
-                let b = document.createElement("td");
-                if (message[i][1] == id) {
-                    // message from me
-                    let cR = document.createElement("td");
+            /*append the element as a child of the tr: */
+            tableMes.appendChild(a);
 
-                    let dR = document.createElement("div");
-                    dR.setAttribute('class', 'message right');
-                    cR.appendChild(dR);
+            let b = document.createElement("TD");
+            if (message[i][1] == id) {
+                // message from me
+                let cR = document.createElement("td");
 
-                    let eR = document.createElement("div");
-                    eR.setAttribute('class', 'text-mess');
-                    dR.appendChild(eR);
+                let dR = document.createElement("div");
+                dR.setAttribute('class', 'message right');
+                cR.appendChild(dR);
 
-                    let fR = document.createElement("span");
-                    eR.appendChild(fR);
+                let eR = document.createElement("div");
+                eR.setAttribute('class', 'text-mess');
+                dR.appendChild(eR);
 
-                    fR.innerHTML += message[i][3];
-                } else {
-                    // message from friend
-                    let dL = document.createElement("div");
-                    dL.setAttribute('class', 'message left');
-                    b.appendChild(dL);
+                let fR = document.createElement("span");
+                eR.appendChild(fR);
 
-                    let eL = document.createElement("div");
-                    eL.setAttribute('class', 'text-mess');
-                    dL.appendChild(eL);
+                fR.innerHTML += message[i][3];
+                a.appendChild(b);
+                a.appendChild(cR);
+            } else {
+                // message from friend
+                let dL = document.createElement("div");
+                dL.setAttribute('class', 'message left');
+                b.appendChild(dL);
 
-                    let fL = document.createElement("span");
-                    eL.appendChild(fL);
+                let eL = document.createElement("div");
+                eL.setAttribute('class', 'text-mess');
+                dL.appendChild(eL);
 
-                    fL.innerHTML += message[i][3];
-                }
+                let fL = document.createElement("span");
+                eL.appendChild(fL);
 
+                fL.innerHTML += message[i][3];
                 a.appendChild(b);
             }
-            showLapse();
-        }
 
-        function destruct() {
-            var x = document.getElementsByClassName("table-body");
-            for (let i = 0; i < x.length; i++) {
-                x[i].parentNode.removeChild(x[i]);
-            }
-        }
 
-        function showMiniLaps() {
-            setTimeout(function () {
+        }
+        showLapse();
+    }
+
+    function destruct() {
+        let menu = document.getElementById('table-body');
+        while (menu.firstChild) {
+            menu.removeChild(menu.firstChild);
+        }
+    }
+
+    function showMiniLaps() {
+        setTimeout(function () {
+            getMessage();
+            show();
+        }, 1000);
+    }
+
+    function showLapse() {
+        setTimeout(function () {
+            getMessage();
+            show();
+            //console.log("test");
+        }, 3000);
+    }
+
+    function send() {
+        let mesBox = document.getElementById("urMessage");
+        let mes = mesBox.value;
+        mesBox.value = "";
+        let xhr = new XMLHttpRequest;
+
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
                 getMessage();
-                show();
-            }, 1000);
-        }
-
-        function showLapse() {
-            setTimeout(function () {
-                getMessage();
-                show();
-                //console.log("test");
-            }, 3000);
-        }
-
-        function send() {
-            let mesBox = document.getElementById("urMessage");
-            let mes = mesBox.value;
-            mesBox.value = "";
-            let xhr = new XMLHttpRequest;
-
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    getMessage();
-                }
-            };
-            xhr.open("POST", "chatSend.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("id="+id+"&idFr="+idFr+"&mes="+mes);
-        }
-
-        function getMessage() {
-            let xhr = new XMLHttpRequest;
-            xhr.responseType = 'json';
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    message = this.response;
-                }
-            };
-
-            xhr.open("POST", "chatGetMes.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("id="+id+"&idFr="+idFr);
-        }
-
-        var inputMes = document.getElementById("urMessage");
-
-        // Execute a function when the user releases a key on the keyboard
-        inputMes.addEventListener("keyup", function(e) {
-            // Number 13 is the "Enter" key on the keyboard
-            if (e.keyCode == "13") {
-                // Cancel the default action, if needed
-                e.preventDefault();
-                // Trigger the button element with a click
-                document.getElementById("sendMes").click();
             }
-        });
+        };
+        xhr.open("POST", "chatSend.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("id="+id+"&idFr="+idFr+"&mes="+mes);
+    }
+
+    function getMessage() {
+        let xhr = new XMLHttpRequest;
+        xhr.responseType = 'json';
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 ) {
+                message = this.response;
+                //console.log(this.status)
+            }
+        };
+
+        xhr.open("POST", "chatGetMes.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("id="+id+"&idFr="+idFr);
+        //xhr.send("id=1&idFr=2");
+    }
+
+    var inputMes = document.getElementById("urMessage");
+
+    // Execute a function when the user releases a key on the keyboard
+    inputMes.addEventListener("keyup", function(e) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (e.keyCode == "13") {
+            // Cancel the default action, if needed
+            e.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("sendMes").click();
+        }
+    });
 
 
 
-    </script>
+</script>
 </body>
 </html>

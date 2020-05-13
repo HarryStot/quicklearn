@@ -1,6 +1,6 @@
 <?php
     include "../../init.php";
-    include '../../dataBase.php';
+    include '../../database.php';
     global $id, $usPseudo, $conn;
 
     $sql_reqListUs = "SELECT * FROM listUser WHERE id_user='$id'";

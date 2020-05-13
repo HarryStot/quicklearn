@@ -1,5 +1,5 @@
 <?php
-    include "../../dataBase.php";
+    include "../../database.php";
     global $conn;
 
     $id2 = $_POST['id'];

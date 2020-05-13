@@ -1,6 +1,6 @@
 <?php
     include '../../init.php';
-    include '../../dataBase.php';
+    include '../../database.php';
     global $conn, $usPseudo, $id;
 
     $disabled = "";
