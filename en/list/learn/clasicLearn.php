@@ -3,22 +3,22 @@ include "../../../init.php";
 include '../../../database.php';
 global $id, $usPseudo, $conn;
 
-$idList = "7"; // todo: select list in home list
+$idList = "8"; // todo: select list in home list
 
 
-$sql_reqListVoc = "SELECT * 
-                    FROM voc
-                    JOIN listVoc
-                        ON listVoc.id_list=7 AND listVoc.id_voc=voc.id_voc
-                    JOIN vocDif 
-                        ON vocDif.id_voc=voc.id_voc";
+$sql_reqListVoc = "SELECT * FROM voc JOIN listVoc ON listVoc.id_list='$idList' AND listVoc.id_voc=voc.id_voc JOIN vocDif ON vocDif.id_voc=voc.id_voc";
 $res_reqListVoc = $conn->query($sql_reqListVoc);
 if ($res_reqListVoc->num_rows > 0) {
     while ($infoVoc = $res_reqListVoc->fetch_array()) {
         $arrayIDVoc[] = $infoVoc['id_voc'];
         $arrayVoc[] = $infoVoc['voc1'];
         $arrayDef[] = $infoVoc['voc2'];
-        $arrayDiff[] = $infoVoc['diff'];
+        if ($infoVoc['diff']) {
+            $arrayDiff[] = $infoVoc['diff'];
+        } else {
+            $arrayDiff[] = "0";
+        }
+
     }
 
 }
