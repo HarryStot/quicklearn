@@ -1,0 +1,59 @@
+.friend {
+    background-color: blue;
+}
+
+/* .row {
+  height: 100vh;
+} */
+
+.message {
+    background-color: rgb(28, 151, 114);
+    color: white;
+    border-radius: 15px;
+    font-size: 18px;
+    max-width: 400px;
+    margin: 10px;
+}
+
+.text-mess {
+    margin: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.message.left {
+    float: left;
+}
+
+.message.right {
+    background-color: rgb(25, 81, 107);
+    float: right;
+}
+
+.row.row1 {
+    width: 100vh;
+}
+
+.table-mess {
+    width: 70vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -37vw;
+    margin-right: -40vw;
+}
+
+.list-friend {
+    list-style-type: none;
+    color: white;
+    background-color: rgb(134, 49, 102);
+    margin: 15px;
+    margin-left: auto;
+    border-radius: 10px;
+}
+
+.text-friend {
+    margin: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
