@@ -100,16 +100,7 @@
         }
 
         function learnClasic(idL) {
-            let xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if (this.readyState === 4 ) {
-                    // ok
-                }
-            };
-
-            xhr.open("POST", "learn/clasicLearn.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send("id="+<?php echo $id;?>+"&idLi="+idL);
+            window.location.href="learn/clasicLearn.php?id=" + <?php echo $id;?> + "&idLi=" + idL;
         }
 
     </script>

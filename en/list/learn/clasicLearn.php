@@ -3,8 +3,8 @@ include "../../../init.php";
 include '../../../database.php';
 global $id, $usPseudo, $conn;
 
-$idList = $_POST['idLi'];
-$id = $_POST['id'];
+$idList = $_GET['idLi'];
+$id = $_GET['id'];
 
 
 $sql_reqListVoc = "SELECT * 
