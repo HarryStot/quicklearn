@@ -75,7 +75,8 @@
                 let btnClasic = document.createElement("button");
                 btnClasic.setAttribute('class', 'btnClasic');
                 btnClasic.setAttribute('onclick', 'learnClasic(' + arrListID[i] + ')');
-                btnClasic.innerHTML
+                btnClasic.innerHTML = "Learn with Clasic Learn";
+                a.appendChild(btnClasic);
 
                 // let d = document.createElement("div");
                 // d.setAttribute("class", "bar");
