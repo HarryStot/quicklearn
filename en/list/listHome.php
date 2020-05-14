@@ -32,7 +32,7 @@
 </head>
 <body>
     <a href="../home.php">Home</a>
-    <a onclick="show()">Test</a>
+    <button onclick="show()">Test</button>
 <!--    TODO: make great with bootstrap-->
     <div class="features-boxed">
         <div class="container">
