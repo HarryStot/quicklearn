@@ -10,7 +10,8 @@
     $res_reqListUs = $conn->query($sql_reqListUs);
     if ($res_reqListUs->num_rows > 0) {
         while ($infoListUs = $res_reqListUs->fetch_array()) {
-            $arrListUs[] = $infoListUs;
+            $arrListName[] = $infoListUs['name_list'];
+            $arrListID[] = $infoListUs['id_list'];
         }
     }
     // TODO: maybe recup owner to add some special button but how ? why not with XML and when you click on more it search the option we can do
