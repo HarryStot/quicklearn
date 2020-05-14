@@ -24,6 +24,11 @@
     } else {
         echo "err";
     }
+    
+    
+    // todo: mettre dans le setting Class comme pour setting normaux !!
+    
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

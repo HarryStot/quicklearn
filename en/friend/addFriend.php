@@ -9,6 +9,7 @@
 
     $sql_reqUs = "SELECT id, pseudo FROM users WHERE 1";
     $res_reqUs = $conn->query($sql_reqUs);
+    $stateToast = 0;
 
     if ($res_reqUs->num_rows > 0) {
 
@@ -36,15 +37,14 @@
             $addRes2 = $conn->query($sql_req2);
             if ($addRes->num_rows > 0 || $addRes2->num_rows > 0) {
 
-                echo "Already friend";
+                $stateToast = 1;
             } else {
 
                 $sql_add = "INSERT INTO friend (id_user1, id_user2) VALUES ('$id', '$add')";
                 if ($conn->query($sql_add)) {
 
                     //echo "New friend";
-                    header('Location: https://quicklearn.yj.fr/home.php');
-                    exit();
+                    $stateToast = 2;
 
                 }
 
@@ -54,14 +54,6 @@
 
     }
 
-    if (isset($_POST['home'])) {
-        $disabled = "";
-        $placeHold = "Your list name";
-        unset($_SESSION['list']);
-        header('Location: https://quicklearn.yj.fr/home.php');
-        exit();
-    }
-    $conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +63,9 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
     <style>
         * {
             box-sizing: border-box;
@@ -141,21 +136,79 @@
 </head>
 
 <body>
-    <form method="post">
 
-        <button type="submit" name="home">Home</button>
-
-    </form>
+    <nav class="navbar navbar-expand-lg navbar-expand-xl navbar-expand-md navbar-expand-sm navbar-light" style="background-color:#C2F732;" id="navbar">
+        <a class="navbar-brand" href="https://quicklearn.yj.fr/en/home.php">
+            <img src="https://i.ibb.co/ZLZkpvh/ql.png" alt="Logo" style="width:40px;">
+        </a>
+        <button class="navbar-toggler btn-rounded" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation" style=" width: 50px;height:50 ;">
+            <i class="material-icons">reorder</i>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarTogglerDemo01">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    
+                <li class="nav-item dropdown container my-1">
+                    <button class="btn dropdown-toggle" href="#"   data-toggle="dropdown"  type="button" style="background-color:#C2F732;">
+                        <i class="material-icons">queue</i>    Create
+                    </button>
+                    <div class="dropdown-menu"  style="background-color:#C2F732;">
+                        <a class="dropdown-item" href="https://quicklearn.yj.fr/en/list/createList.php">New list</a>
+                        <a class="dropdown-item" href="https://quicklearn.yj.fr/en/class/createClass.php">New class</a>
+                        <a class="dropdown-item" href="#">A good idea maybe</a>
+                    </div>
+                </li >
+                
+                <li class="nav-item dropdown container  my-1">
+                    <button class="btn dropdown-toggle"  type="button" id="navbarDropdownMenuLink" data-toggle="dropdown"  style="background-color:#C2F732 ;">
+                        <i class="material-icons">group</i> Friends
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:#C2F732;">
+                        <a class="dropdown-item" href="https://quicklearn.yj.fr/en/friend/myFriend.php">Your Friend</a>
+                        <a class="dropdown-item" href="https://quicklearn.yj.fr/en/friend/addFriend.php">Add a friend</a>
+                    </div>
+                </li>
+                
+                
+                  <li class="nav-item dropdown container  my-1">
+                    <button class="btn dropdown-toggle"  type="button" id="navbarDropdownMenuLink" data-toggle="dropdown"  style="background-color:#C2F732 ;">
+                        <i class="material-icons">library_books</i> Your List
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:#C2F732;">
+                        <a class="dropdown-item" href="https://quicklearn.yj.fr/en/list/listHome.php">List</a>
+                    </div>
+                </li>
+                
+    
+                <li class="nav-item dropdown container  my-1">
+                    <button class="btn dropdown-toggle"  type="button" id="navbarDropdownMenuLink" data-toggle="dropdown"  style="background-color:#C2F732 ;">
+                        <i class="material-icons">school</i> Your Classes
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:#C2F732;">
+                        <a class="dropdown-item" href="https://quicklearn.yj.fr/en/class/classHome.php">Classes</a>
+                    </div>
+                </li>
+    
+            </ul>
+        </div>
+    
+        <div class="dropleft float-right ">
+            <button class="btn dropdown-toggle " href="#"   data-toggle="dropdown"  type="button" style="background-color:#C2F732;">
+                <img class="rounded-circle " src="https://quicklearn.yj.fr/no-avatar.svg" alt="rambo" style="width:40px;height: 40px;" >
+            </button>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:#C2F732;">
+                <a class="dropdown-item" href="setting/account.php">Me !</a>
+                <a class="dropdown-item" href="setting/settingHome.php">Setting</a>
+                <a class="dropdown-item" href="setting/logOut.php">Log out</a>
+            </div>
+        </div>
+    </nav>
 
     <form method="post" autocomplete="off"> <!-- autocomplete="off" -> immportant -->
 
-        <div class="autocomplete" style="width: 300px;">
-
-            <input type="text" name="users" id="addFriend" placeholder="Name of my friend"> <!-- id et name -> immportant -->
-
-            <input type="submit" name="addFriend"></input>
-
+        <div class="autocomplete">
+            <input type="text" name="users" id="addFriend" placeholder="Name of my friend" required></input> <!-- id et name -> immportant -->
         </div>
+        <input type="submit" name="addFriend"></input>
 
     </form>
 
@@ -318,6 +371,55 @@
         /*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
         autocomplete(document.getElementById("addFriend"), usersName);
     </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script src="https://code.jquery.com/jquery-2.0.3.min.js" ></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script>
+    window.onscroll = function() {myFunction()};
+        // Get the navbar
+        var navbar = document.getElementById("navbar");
+        
+        // Get the offset position of the navbar
+        var sticky = navbar.offsetTop;
+        
+        // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function myFunction() {
+          if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+          } else {
+            navbar.classList.remove("sticky");
+          }
+    }
+    
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-top-left",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+        
+    if (<?php echo $stateToast;?> == 1) {
+        toastr.warning(" ", "You are already friend");
+    } else if (<?php echo $stateToast;?> == 2) {
+        toastr.success(" ", "You have a new friend !");
+    }
+</script>
 
 </body>
 
