@@ -30,8 +30,9 @@
     <title>List home - QuickLearn</title>
     <link rel="icon" type="image/png" href="https://i.ibb.co/99nFZkB/qlmin.png"/>
 </head>
-<body onload="show()">
+<body>
     <a href="../home.php">Home</a>
+    <a onclick="show()">Test</a>
 <!--    TODO: make great with bootstrap-->
     <div class="features-boxed">
         <div class="container">
