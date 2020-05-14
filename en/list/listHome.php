@@ -3,24 +3,14 @@
     include '../../database.php';
     global $id, $usPseudo, $conn;
 
-    $sql_reqListUs = "SELECT * FROM listUser WHERE id_user='$id'";
+    $sql_reqListUs = "SELECT * 
+                        FROM list
+                        JOIN listUser
+                        ON listUser.id_user='1' AND list.id_list=listUser.id_list";
     $res_reqListUs = $conn->query($sql_reqListUs);
     if ($res_reqListUs->num_rows > 0) {
         while ($infoListUs = $res_reqListUs->fetch_array()) {
             $arrListUs[] = $infoListUs;
-        }
-
-        foreach ($arrListUs as $item) {
-            $idList = $item['id_list'];
-
-            $sql_reqNameList = "SELECT * FROM list WHERE id_list='$idList'";
-            $res_reqNameList = $conn->query($sql_reqNameList);
-            if ($res_reqNameList->num_rows > 0) {
-                $infoNameList = $res_reqNameList->fetch_array();
-                $nameList = $infoNameList['name_list'];
-            }
-            $arrListID[] = $idList;
-            $arrListName[] = $nameList;
         }
     }
     // TODO: maybe recup owner to add some special button but how ? why not with XML and when you click on more it search the option we can do
@@ -58,7 +48,7 @@
     <script>
         const arrListName = <?php echo json_encode($arrListName); ?>;
         const arrListID = <?php echo json_encode($arrListID); ?>;
-        const arrNoteList = ["88", "75", "52"]; //<?php /*echo json_encode($arrNoteList);*/ ?>;
+        // const arrNoteList = ["88", "75", "52"]; //<?php /*echo json_encode($arrNoteList);*/ ?>;
 
         var zoneAff = document.getElementById("zoneAff");
 
@@ -81,25 +71,43 @@
                 c.innerHTML += arrListName[i];
                 b.appendChild(c);
 
-                let d = document.createElement("div");
-                d.setAttribute("class", "bar");
-                b.appendChild(d);
+                let btnClasic = document.createElement("button");
+                btnClasic.setAttribute('class', 'btnClasic');
+                btnClasic.setAttribute('onclick', 'learnClasic(' + arrListID[i] + ')');
+                btnClasic.innerHTML
 
-                let e = document.createElement("div");
-                e.setAttribute("class", "emptybar");
-                d.appendChild(e);
-
-                let f = document.createElement("div");
-                f.setAttribute("class", "filledbar");
-                f.setAttribute("width", arrNoteList[i] + "%");
-                d.appendChild(f);
+                // let d = document.createElement("div");
+                // d.setAttribute("class", "bar");
+                // b.appendChild(d);
+                //
+                // let e = document.createElement("div");
+                // e.setAttribute("class", "emptybar");
+                // d.appendChild(e);
+                //
+                // let f = document.createElement("div");
+                // f.setAttribute("class", "filledbar");
+                // f.setAttribute("width", arrNoteList[i] + "%");
+                // d.appendChild(f);
 
             }
-            if (arrListName == "") {
+            if (arrListName === "") {
                 let text = document.createElement("h2");
                 text.innerHTML += "Your no list";
                 zoneAff.appendChild(text);
             }
+        }
+
+        function learnClasic(idL) {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (this.readyState === 4 ) {
+                    // ok
+                }
+            };
+
+            xhr.open("POST", "learn/clasicLearn.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("id="+<?php echo $id;?>+"&idLi="+idL);
         }
 
     </script>

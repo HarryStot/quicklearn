@@ -189,7 +189,7 @@
         let mesBox = document.getElementById("urMessage");     // function qui envois le message à la db
         let mes = mesBox.value;
         mesBox.value = "";
-        let xhr = new XMLHttpRequest; // avec des requete HTTP
+        let xhr = new XMLHttpRequest(); // avec des requete HTTP
 
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
@@ -202,10 +202,10 @@
     }
 
     function getMessage() {
-        let xhr = new XMLHttpRequest;
+        let xhr = new XMLHttpRequest();
         xhr.responseType = 'json';
         xhr.onreadystatechange = function() { // idem que send mais pour récupérer les messages
-            if (this.readyState == 4 ) {
+            if (this.readyState === 4 ) {
                 message = this.response;
             }
         };

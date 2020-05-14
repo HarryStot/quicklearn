@@ -3,7 +3,8 @@ include "../../../init.php";
 include '../../../database.php';
 global $id, $usPseudo, $conn;
 
-$idList = "8"; // todo: select list in home list
+$idList = $_POST['idLi'];
+$id = $_POST['id'];
 
 
 $sql_reqListVoc = "SELECT * 
