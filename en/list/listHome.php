@@ -49,7 +49,6 @@
     <script>
         const arrListName = <?php echo json_encode($arrListName); ?>;
         const arrListID = <?php echo json_encode($arrListID); ?>;
-        // const arrNoteList = ["88", "75", "52"]; //<?php /*echo json_encode($arrNoteList);*/ ?>;
 
         var zoneAff = document.getElementById("zoneAff");
 
@@ -76,7 +75,7 @@
                 btnClasic.setAttribute('class', 'btnClasic');
                 btnClasic.setAttribute('onclick', 'learnClasic(' + arrListID[i] + ')');
                 btnClasic.innerHTML = "Learn with Clasic Learn";
-                a.appendChild(btnClasic);
+                b.appendChild(btnClasic);
 
                 // let d = document.createElement("div");
                 // d.setAttribute("class", "bar");
