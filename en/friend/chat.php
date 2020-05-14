@@ -63,6 +63,7 @@ $conn->close();
     var arrNaFr = <?php echo json_encode($arrFriendName);?>;
     var arrIdFr = <?php echo json_encode($arrFriendId);?>;
     let idFr;
+    let timer;
 
     var message = {};
 
@@ -101,6 +102,8 @@ $conn->close();
 
     function changeFr(newIdFr) {
         if (idFr != newIdFr) {
+            //clearInterval(timer);
+
             idFr = newIdFr;
             show();
 
@@ -116,7 +119,6 @@ $conn->close();
 
             let select = document.getElementById(newIdFr);
             select.classList.add('select');
-            show();
         }
     }
 
@@ -126,60 +128,57 @@ $conn->close();
         destruct(); // suprime les anciens message pour ne pas faire de duplication
         getMessage(); // récup les messages dans la base de données
 
-        if (message === null) {
-            getMessage();
-        } else {
-            if (message.length) {
-                /* cette function fait :
-                * - appelle une autre function qui va supprimer les messages
-                * - appelle une autre function qui va récup les messages dans la db
-                * - affiche les messages avec des élements HTML pour que ce soit agréable
-                * - appelle une autre function qui va reappelle cette function 3s plus tard
-                */
-                for (i = 0; i < message.length; i++) {
-                    /* créer élement <tr> */
-                    let a = document.createElement("TR");
 
-                    /*append the element as a child of the tr: */
-                    tableMes.appendChild(a);
+        if (message.length) {
+            /* cette function fait :
+            * - appelle une autre function qui va supprimer les messages
+            * - appelle une autre function qui va récup les messages dans la db
+            * - affiche les messages avec des élements HTML pour que ce soit agréable
+            * - appelle une autre function qui va reappelle cette function 3s plus tard
+            */
+            for (i = 0; i < message.length; i++) {
+                /* créer élement <tr> */
+                let a = document.createElement("TR");
 
-                    let b = document.createElement("TD");
-                    if (message[i][1] == id) {
-                        // message from me
-                        let cR = document.createElement("td");
+                /*append the element as a child of the tr: */
+                tableMes.appendChild(a);
 
-                        let dR = document.createElement("div");
-                        dR.setAttribute('class', 'message right');
-                        cR.appendChild(dR);
+                let b = document.createElement("TD");
+                if (message[i][1] == id) {
+                    // message from me
+                    let cR = document.createElement("td");
 
-                        let eR = document.createElement("div");
-                        eR.setAttribute('class', 'text-mess');
-                        dR.appendChild(eR);
+                    let dR = document.createElement("div");
+                    dR.setAttribute('class', 'message right');
+                    cR.appendChild(dR);
 
-                        let fR = document.createElement("span");
-                        eR.appendChild(fR);
+                    let eR = document.createElement("div");
+                    eR.setAttribute('class', 'text-mess');
+                    dR.appendChild(eR);
 
-                        fR.innerHTML += message[i][3];
-                        a.appendChild(b);
-                        a.appendChild(cR);
-                    } else {
-                        // message from friend
-                        let dL = document.createElement("div");
-                        dL.setAttribute('class', 'message left');
-                        b.appendChild(dL);
+                    let fR = document.createElement("span");
+                    eR.appendChild(fR);
 
-                        let eL = document.createElement("div");
-                        eL.setAttribute('class', 'text-mess');
-                        dL.appendChild(eL);
+                    fR.innerHTML += message[i][3];
+                    a.appendChild(b);
+                    a.appendChild(cR);
+                } else {
+                    // message from friend
+                    let dL = document.createElement("div");
+                    dL.setAttribute('class', 'message left');
+                    b.appendChild(dL);
 
-                        let fL = document.createElement("span");
-                        eL.appendChild(fL);
+                    let eL = document.createElement("div");
+                    eL.setAttribute('class', 'text-mess');
+                    dL.appendChild(eL);
 
-                        fL.innerHTML += message[i][3];
-                        a.appendChild(b);
-                    }
+                    let fL = document.createElement("span");
+                    eL.appendChild(fL);
 
+                    fL.innerHTML += message[i][3];
+                    a.appendChild(b);
                 }
+
             }
         }
         showLapse();
@@ -192,15 +191,16 @@ $conn->close();
         }
     }
 
+    //timer = setInterval(show(), 3000);
+
     function showMiniLaps() {
         setTimeout(function () {
-            getMessage();
             show();
         }, 1000);
     }
 
     function showLapse() {
-        setTimeout(function () {
+        timer = setTimeout(function () {
             show();
             //console.log("test");
         }, 3000);
@@ -255,8 +255,6 @@ $conn->close();
             menuFr.removeChild(menuFr.firstChild);
         }
     }
-
-
 
 </script>
 </body>
