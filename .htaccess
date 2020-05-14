@@ -1,0 +1,8 @@
+
+RewriteEngine on
+
+ErrorDocument 404 /404.php
+RewriteCond %{HTTP_HOST} ^quicklearn\.yj\.fr$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.quicklearn\.yj\.fr$
+RewriteRule ^/?$ "https\:\/\/quicklearn\.yj\.fr\/en\/" [R=301,L]
+

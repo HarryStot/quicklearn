@@ -1,12 +1,13 @@
 <?php
     include "../init.php";
-    include '../dataBase.php';
+    include '../database.php';
+    include "../crypt.php";
     global $id, $usPseudo, $conn;
 
 
-    $idUs = $_SESSION['idUs'];
-    $pass = $_SESSION['password'];
-    $code = $_SESSION['codePass'];
+    $idUs = decryptqqc($_SESSION['idUs']);
+    $pass = decryptqqc($_SESSION['password']);
+    $code = decryptqqc($_SESSION['codePass']);
 
     if (isset($_POST['changeCode'])) {
 
@@ -18,13 +19,9 @@
             if (password_verify($pass,$password)) {
 
                 echo "<div class='alert alert-warning alert-dismissible'>
-
                         <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-
                         <strong>Alert !</strong>You can't use the same password before !
-
                         </div>";
-
             } else {
 
                 if ($password == $_POST['password2']) {
@@ -40,21 +37,14 @@
                         exit();
 
                     } else {
-
                         echo "Marche pas";
-
                     }
-
                 } else {
 
                     echo "<div class='alert alert-warning alert-dismissible'>
-
                             <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-
                             <strong>Alert !</strong>The password must be the same in the two case !
-
                             </div>";
-
                 }
 
             }
@@ -62,13 +52,9 @@
         } else {
 
             echo "<div class='alert alert-warning alert-dismissible'>
-
                     <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
-
                     <strong>Alert !</strong>Wrong code !
-
                     </div>";
-
         }
 
     }

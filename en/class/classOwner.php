@@ -1,6 +1,6 @@
 <?php
     include "../../init.php";
-    include '../../dataBase.php';
+    include '../../database.php';
     global $id, $usPseudo, $conn, $idClass;
     // $idClass = $_SESSION['idClass'];
     $idClass = 1;
@@ -24,6 +24,11 @@
     } else {
         echo "err";
     }
+    
+    
+    // todo: mettre dans le setting Class comme pour setting normaux !!
+    
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">

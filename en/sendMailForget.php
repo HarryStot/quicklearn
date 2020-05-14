@@ -1,6 +1,7 @@
 <?php
 
-    include '../../dataBase.php';
+    include '../database.php';
+    include "../crypt.php";
     global $id, $usPseudo, $conn;
 
     if (isset($_POST['sendEmail'])) {
@@ -15,11 +16,11 @@
 
             $usInfo = $resUsEmail->fetch_array();
 
-            $_SESSION['idUs'] = $usInfo['id'];
-            $_SESSION['password'] = $usInfo['password'];
+            $_SESSION['idUs'] = cryptqqc($usInfo['id']);
+            $_SESSION['password'] = cryptqqc($usInfo['password']);
 
             $code = bin2hex(random_bytes(3));
-            $_SESSION['codePass'] = $code;
+            $_SESSION['codePass'] = cryptqqc($code);
 
         
             $to_email = $email;
@@ -28,7 +29,7 @@
             $headers = 'From: noreply @ QuickLearn . com';
             mail($to_email,$subject,$message,$headers);
 
-            header('Location: https://quicklearn.yj.fr/forgetPassword.php');
+            header('Location: https://quicklearn.yj.fr/en/forgetPassword.php');
             exit();
 
         } else {
