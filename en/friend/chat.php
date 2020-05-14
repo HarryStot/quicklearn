@@ -69,7 +69,7 @@
     drawFriend();
 
     function drawFriend() { // function pour désiner
-
+        destructFr();
         let ulFr = document.getElementById("ulFriend");
 
         for (i = 0; i < arrNaFr.length; i++) { // pour tout les amis
@@ -227,6 +227,13 @@
             document.getElementById("sendMes").click();
         }
     });
+
+    function destructFr() {
+        let menuFr = document.getElementById('ulFriend'); // function qui détruit les amis
+        while (menuFr.firstChild) {
+            menuFr.removeChild(menuFr.firstChild);
+        }
+    }
 
 
 

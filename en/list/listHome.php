@@ -32,7 +32,6 @@
 </head>
 <body>
     <a href="../home.php">Home</a>
-    <button onclick="show()">Test</button>
 <!--    TODO: make great with bootstrap-->
     <div class="features-boxed">
         <div class="container">
@@ -52,6 +51,8 @@
         const arrListID = <?php echo json_encode($arrListID); ?>;
 
         var zoneAff = document.getElementById("zoneAff");
+
+        show();
 
         function show() {
             for (i = 0; i < arrListName.length; i++) {

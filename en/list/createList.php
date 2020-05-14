@@ -147,18 +147,11 @@
                     echo "err";
                 }
 
-                $sql_reqDif = "SELECT * FROM vocDif WHERE id_user='$idUs' AND id_voc='$idNewVoc'";
-                $res_reqDif = $conn2->query($sql_reqDif);
-                if ($res_reqDif->num_rows > 0) {
-                    // déjà dans la db -> ce qui n'est pas normal
+                $sql_insertDif = "INSERT INTO vocDif (id_user, id_voc, dif) VALUES ('$idUs', '$idNewVoc', '0')";
+                if ($conn2->query($sql_insertDif)) {
+                    // ajout dans table vocDif
                 } else {
-                    $sql_insertDif = "INSERT INTO vocDif (id_user, id_voc, dif) VALUES ('$idUs', '$idNewVoc', '0')";
-                    if ($conn2->query($sql_insertDif)) {
-                        // ajout dans table vocDif
-                    } else {
-                        echo "Une erreur c'est produite";
-                    }
-
+                    echo "Une erreur c'est produite";
                 }
 
 
