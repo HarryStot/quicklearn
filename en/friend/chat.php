@@ -4,7 +4,7 @@
     global $id, $usPseudo, $conn;
 
     /* query sql pour récup les noms et id des amis */
-    $sql_reqFriend = "SELECT * FROM friend JOIN users ON (friend.id_user1 = users.id OR friend.id_user2 = users.id) AND users.id != '$id'";
+    $sql_reqFriend = "SELECT * FROM friend JOIN users ON (friend.id_user1 = users.id OR friend.id_user2 = users.id) AND users.id != '$id' GROUP BY id";
     $res_reqFriend = $conn->query($sql_reqFriend);       // on utilise JOIN pour combiner les deux tables de notre db(database)     |-> cette commande permet
     if ($res_reqFriend->num_rows > 0) {                                                 //                                           de ne pas prendre soi même
         while ($infoFriend = $res_reqFriend->fetch_array()) {
