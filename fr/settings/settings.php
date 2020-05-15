@@ -11,7 +11,7 @@
                 setcookie('pseudo', $usPseudo, $t, '/');
                 setcookie('id', $id, $t, '/');
                 setcookie('conn', 'on', $t, '/');
-                header('Location: https://quiclearn.000webhostapp.com/setting/settingHome.php');
+                header('Location: hhttps://quicklearn.yj.fr/fr/setting/settingHome.php');
                 exit();
             } else echo "<div class='alert alert-warning alert-dismissible'>
                 <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
@@ -56,7 +56,7 @@
 
     if (isset($_POST['home'])) {
         $disabled = "";
-        header('Location: https://quiclearn.000webhostapp.com/home.php');
+        header('Location: https://quicklearn.yj.fr/fr/home.php');
         exit();
     }
 
