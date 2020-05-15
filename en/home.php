@@ -1,5 +1,6 @@
 <?php
     include "../init.php";
+    include "lang.php";
     global $usPseudo;
 ?>
 <!DOCTYPE html>
